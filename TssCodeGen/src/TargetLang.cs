@@ -19,7 +19,8 @@ namespace CodeGen
         CPP,
         Java,
         JS,
-        Py
+        Py,
+        Rust
     }
 
     /// <summary> Handles language specific syntax of the generated code and translations of names, types 
@@ -32,7 +33,7 @@ namespace CodeGen
     {
         /// <summary> Lists code generators corresponding to the supported target languages 
         /// from the Lang enum (listed in the same order) </summary>
-        static Type[] CodeGenerators = { typeof(CGenCpp), typeof(CGenJava), typeof(CGenNode), typeof(CGenPy) };
+        static Type[] CodeGenerators = { typeof(CGenCpp), typeof(CGenJava), typeof(CGenNode), typeof(CGenPy), typeof(CGenRust) };
         
         static Lang _curLang = Lang.None;
 
@@ -61,16 +62,16 @@ namespace CodeGen
 
         static Dictionary<string, ElementaryType> ElementaryTypes = new Dictionary<string, ElementaryType> {
                 //                                 .Net      C++       Java     TypeScript  Python
-                { "BYTE",   new ElementaryType(1, "byte",   "BYTE",   "byte",    "number",  "int")},
-                { "UINT8",  new ElementaryType(1, "byte",   "UINT8",  "byte",    "number",  "int")},
-                { "INT8",   new ElementaryType(1, "sbyte",  "INT8",   "byte",    "number",  "int")},
-                { "UINT16", new ElementaryType(2, "ushort", "UINT16", "int",     "number",  "int")},
-                { "INT16",  new ElementaryType(2, "short",  "INT16",  "int",     "number",  "int")},
-                { "UINT32", new ElementaryType(4, "uint",   "UINT32", "int",     "number",  "int")},
-                { "INT32",  new ElementaryType(4, "int",    "INT32",  "int",     "number",  "int")},
-                { "UINT64", new ElementaryType(8, "ulong",  "UINT64", "long",    "number",  "int")},
-                { "INT64",  new ElementaryType(8, "long",   "INT64",  "long",    "number",  "int")},
-                { "BOOL",   new ElementaryType(1, "bool",   "BOOL",   "boolean", "boolean", "bool")}
+                { "BYTE",   new ElementaryType(1, "byte",   "BYTE",   "byte",    "number",  "int", "u8")},
+                { "UINT8",  new ElementaryType(1, "byte",   "UINT8",  "byte",    "number",  "int", "u8")},
+                { "INT8",   new ElementaryType(1, "sbyte",  "INT8",   "byte",    "number",  "int", "i8")},
+                { "UINT16", new ElementaryType(2, "ushort", "UINT16", "int",     "number",  "int", "u16")},
+                { "INT16",  new ElementaryType(2, "short",  "INT16",  "int",     "number",  "int", "i16")},
+                { "UINT32", new ElementaryType(4, "uint",   "UINT32", "int",     "number",  "int", "u32")},
+                { "INT32",  new ElementaryType(4, "int",    "INT32",  "int",     "number",  "int", "i32")},
+                { "UINT64", new ElementaryType(8, "ulong",  "UINT64", "long",    "number",  "int", "u64")},
+                { "INT64",  new ElementaryType(8, "long",   "INT64",  "long",    "number",  "int", "i64")},
+                { "BOOL",   new ElementaryType(1, "bool",   "BOOL",   "boolean", "boolean", "bool", "bool")}
         };
 
         public static IEnumerable<TpmValueType> GetElementaryTypes()

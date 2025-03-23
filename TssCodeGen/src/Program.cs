@@ -172,7 +172,7 @@ namespace CodeGen
                     "  extract     - Force parsing the TPM 2.0 spec documents even if the intermediate\n" +
                     "                XML representation file (RawTables.xml) is available. By default\n" +
                     "                the tool will always use RawTables.xml if it is present.\n" +
-                    "  dotNet, cpp, java, node, py - Any combination of these options can be used\n" +
+                    "  dotNet, cpp, java, node, py, rust - Any combination of these options can be used\n" +
                     "                to select TSS implementations to be updated. By default (when\n" +
                     "                none of them is present) all supported languages are updated.\n" +
                     "\n" +
